@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ionela & Aaron wedding website</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    
+    <!-- Alex Brush --> <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Alex Brush --> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Alex Brush --> <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
+
+    <!-- Cormorant SC font --> <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Cormorant SC font --> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Cormorant SC font --> <link href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@300;400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Monsieur+La+Doulaise&display=swap" rel="stylesheet">
+
+    <!-- Forum font --> <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Forum font --> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Forum font --> <link href="https://fonts.googleapis.com/css2?family=Forum&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-logo">Aaron & Ionela</div>
+        
+        <!-- Hamburger Icon -->
+        <div class="hamburger" id="hamburger">
+            ☰
+        </div>
+
+        <!-- Navigation Links -->
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#wedding">The Wedding</a></li>
+            <li><a href="#rsvp">RSVP</a></li>
+        </ul>
+      </nav>
+
+    
+      
+    <header class="header">
+        <h1>Aaron & Ionela</h1>
+        <h2>20th August 2025</h2>
+        <div id="countdown" class="countdown">
+            <div class="time-box">
+              <span id="days">0</span>
+              <small>Days</small>
+            </div>
+            <div class="time-box">
+              <span id="hours">0</span>
+              <small>Hours</small>
+            </div>
+            <div class="time-box">
+              <span id="minutes">0</span>
+              <small>Mins</small>
+            </div>
+            <div class="time-box">
+              <span id="seconds">0</span>
+              <small>Secs</small>
+            </div>
+        </div>
+        <div class="header-link">
+            <a href="#rsvp" class="button">
+                RSVP
+            </a>
+        </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="location">
+            <section class="location-head" id="location">
+                <div class="location-paragraph">  
+                    <h2>The Location</h2>
+                    <p>
+                        Address: Ballyconnell, Co. Cavan, Ireland, H14 FE03
+                    </p> 
+                    <p>The Slieve Russell Hotel is a stunning venue located in Co. Cavan, Ireland. It offers beautiful scenery and luxurious accommodations for our special day.
+                    We are excited to celebrate our wedding at this incredible location, surrounded by family and friends.
+                    We hope you can join us!</p>
+                </div>
+                    <div class="location-picture">
+                    <div class="overlay-text">
+                        <h3>The Slieve Russell Hotel</h3>
+                    </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="wedding">
+            <section class="wedding-head" id="wedding">
+                <div class="wedding-picture">
+                    <div class="overlay-text">
+                        <h3>What to Expect</h3>
+                    </div>
+                </div>
+                <div class="wedding-paragraph">
+                    <h2>The Wedding</h2>
+                    <p>We are planning a beautiful ceremony followed by a reception filled with love, laughter, and dancing.
+                    We have a lot of exciting surprises in store for our guests, and we can't wait to share this special day with you.</p>
+                    <p>Dress code: Formal attire is requested.</p>
+                    <p>We will have a variety of delicious food and drinks, as well as entertainment.</p>
+                    <p>We are so grateful to have you in our lives, and we can't wait to celebrate this special day with you.</p>
+                </div>
+            </section>
+        </div>
+
+        <div class="rsvp">
+            <section class="rsvp-head" id="rsvp">
+                <h2>RSVP</h2>
+                <div class="rsvp-content">
+                    <h3>We would love to hear from you!</h3>
+                    <p>Please let us know if you can make it to our wedding by filling out the form below.</p>
+                    <p>We kindly ask that you RSVP by 1st July 2025 to help us with our planning.</p>
+                </div>
+                <div class="rsvp-form">
+                    <form action="#" method="post">
+                        <div class="rsvp-name">
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="rsvp-email">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <input type="submit" value="Submit" class="button">
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Ionela & Aaron. All rights reserved.</p>
+    </footer>
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+      
+        hamburger.addEventListener('click', () => {
+          navLinks.classList.toggle('active');
+        });
+    </script>     
+    
+    <script>
+        const countdown = document.getElementById("countdown");
+        const dayEl = document.getElementById("days");
+        const hourEl = document.getElementById("hours");
+        const minEl = document.getElementById("minutes");
+        const secEl = document.getElementById("seconds");
+      
+        const countDownDate = new Date("Aug 20, 2025 14:00:00").getTime();
+      
+        const x = setInterval(function () {
+          const now = new Date().getTime();
+          const distance = countDownDate - now;
+      
+          if (distance < 0) {
+            clearInterval(x);
+            countdown.innerHTML = "EXPIRED";
+            return;
+          }
+      
+          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      
+          dayEl.textContent = days;
+          hourEl.textContent = hours;
+          minEl.textContent = minutes;
+          secEl.textContent = seconds;
+      
+          if (!countdown.classList.contains("visible")) {
+            countdown.classList.add("visible");
+          }
+        }, 1000);
+      </script>
+
+    <!--script>
+        const locationPicture = document.querySelector('.location-picture');
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY;
+            locationPicture.style.transform = `translateX(${scrollPosition * 0.1}px)`;
+        });
+    </script-->
+</body>
+
+</html>

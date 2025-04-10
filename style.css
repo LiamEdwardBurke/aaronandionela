@@ -1,0 +1,509 @@
+.alex-brush-regular {
+  font-family: "Alex Brush", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+  
+  .cormorant-sc-light {
+    font-family: "Cormorant SC", serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  .cormorant-sc-regular {
+    font-family: "Cormorant SC", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .cormorant-sc-medium {
+    font-family: "Cormorant SC", serif;
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+  .cormorant-sc-semibold {
+    font-family: "Cormorant SC", serif;
+    font-weight: 600;
+    font-style: normal;
+  }
+  
+  .cormorant-sc-bold {
+    font-family: "Cormorant SC", serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  .forum-regular {
+    font-family: "Forum", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Citadel Script';
+    src: url(./assets/Fonts/CitadelScriptStd.otf);
+    font-weight: normal;
+    font-style: normal;
+  }
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+body, html {
+    height: 200vh;
+    font-family: serif;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+h1 {
+    font-family: "Citadel Script", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 3.5rem;
+}
+
+h2 {
+    font-family: "Cormorant SC", serif;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 2.5rem;
+    margin: 20px;
+}
+
+h3 {
+    font-family: "Cormorant SC", serif;
+    font-weight: 400;
+    font-style: normal;
+    margin: 10px;
+}
+
+p {
+    font-family: "Cormorant SC", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14pt;
+    max-width: 800px;
+    text-align: left;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.header h2 {
+  font-family: "Cormorant SC", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2rem;
+}
+
+.header {
+    background-image: url('./assets/images/header2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+/* Overlay using ::before */
+.header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* black with 30% opacity */
+  z-index: 0; /* behind text */
+}
+
+/* Make sure header content is above the overlay */
+.header > * {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 1000px) {
+    .header {
+      background-image: url('./assets/images/header.jpg');
+
+    }
+  }
+  
+  /* Navbar container */
+  .navbar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(51, 51, 51, 0);
+    padding: 1rem 2rem;
+    color: white;
+    z-index: 150;
+  }
+  
+  /* Logo */
+  .nav-logo {
+    font-size: 2rem;
+    font-weight: 400;
+    font-family: "Citadel Script", serif;
+  }
+  
+  /* Navigation links */
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    text-align: center;
+    font-family: "Cormorant SC", serif;
+    font-size: 1.5rem;
+  }
+  
+  .nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-links li a:hover {
+    color: #ffcc00; /* highlight color on hover */
+  }
+  /* Hamburger styles */
+.hamburger {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+  
+  /* Responsive - mobile */
+  @media (max-width: 680px) {
+    .hamburger {
+      display: block;
+    }
+  
+    .nav-links {
+      position: absolute;
+      top: 70px;
+      right: 0;
+      background-color: #BDB395;
+      flex-direction: column;
+      gap: 4rem;
+      padding: 1rem 2rem;
+      width: 100%;
+      display: none;
+      font-size: 1.5rem;
+    }
+  
+    .nav-links.active {
+      display: flex;
+      flex-direction: column;
+    }
+
+    h3 {
+        text-align: center;
+    }
+  }
+
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+  margin-top: 1.2rem;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.countdown.visible {
+  opacity: 1;
+}
+
+.time-box span {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  font-family: 'Cormorant SC', serif; /* or your preferred font */
+}
+
+.time-box small {
+  font-size: 1.2rem;
+  color: #fff;
+  font-family: 'Cormorant SC', serif;
+}
+
+.header-link {
+  padding-top: 40px;
+}
+
+.button {
+  font-family: "Cormorant SC", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
+  background-color: transparent;
+  color: white;
+  align-items: center;
+  text-decoration: none;
+  border: 0.9px solid white;
+  padding: 0.25rem 2rem;
+  border-radius: 30px;
+}
+
+.button:hover {
+  background-color: white;
+  color: black;
+  transition: all 0.3s ease-in-out;
+}
+
+section {
+    width: 100%;
+  }
+
+
+
+  
+  .location-head {
+    background-color: #F6F0F0;
+    color: black;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0rem;
+    width: 100%;
+  }
+
+
+  .location-picture {
+    flex: 1;
+    order: 2;
+    position: relative;
+    background-image: url('./assets/images/location.jpg');
+    background-size: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgba(0, 0, 0, 0.4); /* fallback color */
+    height: 75vh;
+    background-attachment: fixed;
+  }
+
+  .location-picture::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 0;
+  }
+
+  .location-paragraph {
+    flex: 1;
+    order: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  @media (max-width: 1000px) {
+    .location-head {
+      flex-direction: column;
+      text-align: center;
+      height: auto;
+    }
+      
+    .location-picture {
+      width: 100%;
+      height: 50vh;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-image: url('./assets/images/location.jpg');
+      min-height: 300px;
+      order: 1;
+    }
+      
+    .location-paragraph {
+      padding: 2rem;
+      order: 2;
+     }
+   }
+
+
+
+  .wedding-head {
+    background-color: #727D73;
+    color: black;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0rem;
+    width: 100%;
+    color: white;
+  }
+
+  .wedding-picture {
+    flex: 1;
+    position: relative;
+    background-image: url('./assets/images/wedding.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgba(0, 0, 0, 0.4); /* fallback color */
+    height: 75vh;
+  }
+
+  .wedding-picture::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 0;
+  }
+
+  .wedding-paragraph {
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* center the text */
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.0); /* optional dark overlay behind text */
+    border-radius: 10px;
+    font-size: 1.5rem;
+  }
+
+@media (max-width: 1000px) {
+  .wedding-head {
+    flex-direction: column;
+    text-align: center;
+    height: auto;
+  }
+    
+  .wedding-picture {
+    width: 100%;
+    height: 50vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('./assets/images/wedding.jpg'); /* RE-DEFINE in case it's not inheriting */
+    min-height: 300px;
+  }
+    
+  .wedding-paragraph {
+    padding: 2rem;
+   }
+ }    
+
+
+
+
+  .rsvp-head {
+    background-color: #F6F0F0;
+    color: black;
+    text-align: center;
+    display: flex;
+    flex: 2;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    padding: 2rem;
+    gap: 2rem;
+  }
+
+  .rsvp-form {
+    width: 100%;
+    max-width: 500px;
+    order: 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .rsvp-content {
+    align-items: center;
+    text-align: left;
+    gap: 2rem;
+    order: 1;
+  }
+
+  .rsvp-name {
+    margin: 10px
+  }
+
+
+
+  .rsvp-content h3 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+  }
+
+  label {
+    font-family: "Cormorant SC", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  form > .button {
+    margin-top: 20px;
+    color: black;
+    border: 1px solid black;
+  }
+
+  form > .button:hover {
+    background-color: black;
+    color: white;
+    transition: all 0.3s ease-in-out;
+  }
+
+  footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    font-family: "Cormorant SC", serif;
+  }
