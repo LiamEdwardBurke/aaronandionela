@@ -55,8 +55,14 @@
     box-sizing: border-box;
   }
 
+body {
+  margin: 0;
+  background-color: #F6F0F0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
 body, html {
-    height: 200vh;
     font-family: serif;
     margin: 0;
     padding: 0;
@@ -83,6 +89,7 @@ h3 {
     font-weight: 400;
     font-style: normal;
     margin: 10px;
+    font-size: 1.5rem;
 }
 
 p {
@@ -96,14 +103,34 @@ p {
     line-height: 1.6;
 }
 
-.header h2 {
+li {
+    font-family: "Cormorant SC", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14pt;
+    max-width: 800px;
+    text-align: left;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.header-image h2 {
   font-family: "Cormorant SC", serif;
   font-weight: 400;
   font-style: normal;
   font-size: 2rem;
 }
 
-.header {
+.header-image {
     background-image: url('./assets/images/header2.jpg');
     background-size: cover;
     background-position: center;
@@ -116,10 +143,11 @@ p {
     align-items: center;
     text-align: center;
     position: relative;
+    padding-top: 100px;
 }
 
 /* Overlay using ::before */
-.header::before {
+.header-image::before {
   content: "";
   position: absolute;
   top: 0;
@@ -131,37 +159,127 @@ p {
 }
 
 /* Make sure header content is above the overlay */
-.header > * {
+.header-image > * {
   position: relative;
   z-index: 1;
 }
 
 @media (max-width: 1000px) {
-    .header {
+    .header-image {
       background-image: url('./assets/images/header.jpg');
 
     }
   }
   
+
+  /* Language selection */
+  .lang {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    display: none;
+  }
+  
+  .lang.active {
+    display: block;
+    opacity: 1;
+  }
+
+  section.lang.active, div.lang.active {
+    display: flex;
+    flex-direction: column;
+}
+
+body:not(.js-enabled) .lang-es {
+  display: none !important;
+}
+
+body:not(.js-enabled) .lang-en {
+  display: flex !important;
+}
+
+  #lang-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+
+  #lang-transition-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  button#lang-toggle {
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button#lang-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+
+
   /* Navbar container */
   .navbar {
-    position: absolute;
-    top: 0;
-    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(51, 51, 51, 0);
     padding: 1rem 2rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: transparent;
+    transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
     color: white;
-    z-index: 150;
   }
+
+  .navbar.scrolled {
+    background-color: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .navbar.scrolled .nav-links li a {
+    color: #fff;
+  }
+  
+  .navbar .nav-links li a {
+    transition: color 0.3s ease;
+  }
+  
+  
   
   /* Logo */
   .nav-logo {
     font-size: 2rem;
-    font-weight: 400;
-    font-family: "Citadel Script", serif;
+    font-family: "Citadel Script", serif; 
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .nav-links-wrapper {
+    display: flex;
+    align-items: center;
   }
   
   /* Navigation links */
@@ -172,6 +290,12 @@ p {
     text-align: center;
     font-family: "Cormorant SC", serif;
     font-size: 1.5rem;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .nav-links.active {
+    transform: translateX(0);
   }
   
   .nav-links li a {
@@ -182,58 +306,103 @@ p {
   }
   
   .nav-links li a:hover {
-    color: #ffcc00; /* highlight color on hover */
+    color: #727D73;
   }
   /* Hamburger styles */
-.hamburger {
+  .hamburger {
     display: none;
     font-size: 2rem;
     cursor: pointer;
   }
+
+  .close-menu {
+    display: none;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    font-size: 2rem;
+    color: #fff;
+    cursor: pointer;
+    z-index: 1001;
+    font-family: sans-serif;
+    font-weight: 400;
+  }
+  
+  
+  .close-menu:hover {
+    color: #727D73;
+  }
   
   /* Responsive - mobile */
-  @media (max-width: 680px) {
+  @media (max-width: 1000px) {
     .hamburger {
       display: block;
     }
   
     .nav-links {
-      position: absolute;
-      top: 70px;
-      right: 0;
-      background-color: #BDB395;
       flex-direction: column;
-      gap: 4rem;
-      padding: 1rem 2rem;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      background-color: #AAB99A;
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
-      display: none;
-      font-size: 1.5rem;
+      height: 100vh;
+      z-index: 999;
+      transform: translateX(100%);
+      transition: transform 0.5s ease-in-out;
     }
-  
+    
     .nav-links.active {
-      display: flex;
-      flex-direction: column;
+      transform: translateX(0);
+    }
+    
+
+    .nav-links li a {
+      font-size: 1.5rem;
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .nav-links li a:hover {
+      color: #727D73;
     }
 
     h3 {
         text-align: center;
     }
+    
+    .close-menu {
+      display: block;
+    }
+  }
+  
+
+
+  .countdown-box {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* spacing between boxes */
+    margin: 20px 0;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 1s ease, transform 1s ease;
   }
 
+  .countdown-box.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
-.countdown {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
+.time-box {
   text-align: center;
-  margin-top: 1.2rem;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-}
-
-.countdown.visible {
-  opacity: 1;
+  background-color: rgba(255, 255, 255, 0.0);
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 1.2rem;
 }
 
 .time-box span {
@@ -258,19 +427,21 @@ p {
   font-family: "Cormorant SC", serif;
   font-weight: 400;
   font-style: normal;
-  font-size: 20px;
+  font-size: 1.2rem;
   background-color: transparent;
-  color: white;
+  color: #fff;
   align-items: center;
   text-decoration: none;
-  border: 0.9px solid white;
-  padding: 0.25rem 2rem;
+  border: 1px solid #fff;
+  padding: 0.5rem 1rem;
   border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .button:hover {
-  background-color: white;
-  color: black;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
   transition: all 0.3s ease-in-out;
 }
 
@@ -279,176 +450,131 @@ section {
   }
 
 
+.head {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0rem;
+  width: 100%;
+}
 
-  
-  .location-head {
-    background-color: #F6F0F0;
-    color: black;
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 0rem;
-    width: 100%;
-  }
+.picture {
+  flex: 1;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: rgba(0, 0, 0, 0.4); /* fallback color */
+  height: 75vh;
+}
 
+.picture::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 0;
+}
 
-  .location-picture {
-    flex: 1;
-    order: 2;
-    position: relative;
-    background-image: url('./assets/images/location.jpg');
-    background-size: auto;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: rgba(0, 0, 0, 0.4); /* fallback color */
-    height: 75vh;
-    background-attachment: fixed;
-  }
+.content {
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+}
 
-  .location-picture::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    z-index: 0;
-  }
+.overlay-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* center the text */
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.0); /* optional dark overlay behind text */
+  border-radius: 10px;
+  font-size: 1.5rem;
+}
 
-  .location-paragraph {
-    flex: 1;
-    order: 1;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-    text-align: center;
-  }
+.left {
+  order: 1;
+}
 
-  @media (max-width: 1000px) {
-    .location-head {
-      flex-direction: column;
-      text-align: center;
-      height: auto;
-    }
-      
-    .location-picture {
-      width: 100%;
-      height: 50vh;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-image: url('./assets/images/location.jpg');
-      min-height: 300px;
-      order: 1;
-    }
-      
-    .location-paragraph {
-      padding: 2rem;
-      order: 2;
-     }
-   }
-
-
-
-  .wedding-head {
-    background-color: #727D73;
-    color: black;
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 0rem;
-    width: 100%;
-    color: white;
-  }
-
-  .wedding-picture {
-    flex: 1;
-    position: relative;
-    background-image: url('./assets/images/wedding.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: rgba(0, 0, 0, 0.4); /* fallback color */
-    height: 75vh;
-  }
-
-  .wedding-picture::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    z-index: 0;
-  }
-
-  .wedding-paragraph {
-    flex: 1;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-    text-align: center;
-  }
-
-  .overlay-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* center the text */
-    color: white;
-    text-align: center;
-    padding: 1rem;
-    background-color: rgba(0, 0, 0, 0.0); /* optional dark overlay behind text */
-    border-radius: 10px;
-    font-size: 1.5rem;
-  }
+.right {
+  order: 2;
+}
 
 @media (max-width: 1000px) {
-  .wedding-head {
+  .head {
     flex-direction: column;
     text-align: center;
     height: auto;
   }
     
-  .wedding-picture {
+  .picture {
     width: 100%;
-    height: 50vh;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-image: url('./assets/images/wedding.jpg'); /* RE-DEFINE in case it's not inheriting */
     min-height: 300px;
   }
     
-  .wedding-paragraph {
-    padding: 2rem;
+  .content {
+    padding: 2.2rem;
    }
- }    
 
-
-
-
-  .rsvp-head {
-    background-color: #F6F0F0;
-    color: black;
-    text-align: center;
-    display: flex;
-    flex: 2;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: auto;
-    padding: 2rem;
-    gap: 2rem;
+  .left {
+    order: 1;
   }
 
-  .rsvp-form {
+  .right {
+      order: 1;
+  }
+  .content {
+    order: 2;
+  }
+ }
+
+
+
+/* LOCATION CONTENT */  
+  .location .head {
+    background-color: #727D73;
+    color: #F6F0F0;
+  }
+
+
+  .location .picture {
+    background-image: url("./assets/images/location.jpg");
+  }
+
+  .location .button {
+    margin-top: 20px;
+  }
+
+
+   
+/* WEDDING CONTENT */
+
+  .wedding .picture {
+    background-image: url('./assets/images/wedding.jpg');
+  }   
+
+
+
+/* RSVP CONTENT */
+
+.rsvp .head {
+  flex-direction: column;
+}
+
+.form {
     width: 100%;
     max-width: 500px;
     order: 2;
@@ -456,27 +582,14 @@ section {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-  }
-
-  .rsvp-content {
-    align-items: center;
-    text-align: left;
-    gap: 2rem;
-    order: 1;
+    padding: 1.5rem;
   }
 
   .rsvp-name {
     margin: 10px
   }
 
-
-
-  .rsvp-content h3 {
-    font-size: 1.5rem;
-    text-align: center;
-  }
-
-  input {
+input {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 25px;
@@ -490,20 +603,55 @@ section {
 
   form > .button {
     margin-top: 20px;
-    color: black;
-    border: 1px solid black;
+    color: #727D73;
+    border: 1px solid #727D73;
   }
 
   form > .button:hover {
-    background-color: black;
-    color: white;
+    background-color: #727D73;
+    color: #fff;
     transition: all 0.3s ease-in-out;
+    border: 1px solid #fff;
   }
 
   footer {
-    background-color: black;
+    background-color: #727D73;
     color: white;
     text-align: center;
     padding: 2rem;
     font-family: "Cormorant SC", serif;
+  }
+
+
+
+
+/* TRAVEL HEADER */
+  .travel .header-image {
+    background-image: url('./assets/images/header-travel-desktop.jpg');
+}
+
+@media (max-width: 1000px) {
+    .travel .header-image {
+      background-image: url('./assets/images/header-travel-mobile.jpg');
+    }
+  }
+
+/* TRAVEL CONTENT */
+.travel-info .head {
+  flex-direction: column;
+}
+
+/* DUBLIN CONTENT */
+.dublin .head {
+  background-color: #727D73;
+  color: #F6F0F0;
+}
+
+  .dublin .picture {
+    background-image: url('./assets/images/dublin.jpg');
+  }
+
+/* WEST COAST CONTENT */
+  .west .picture {
+    background-image: url('./assets/images/westcoast.jpg');
   }

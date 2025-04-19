@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ionela & Aaron wedding website</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    
+    <!-- Alex Brush --> <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Alex Brush --> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Alex Brush --> <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
+
+    <!-- Cormorant SC font --> <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Cormorant SC font --> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Cormorant SC font --> <link href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@300;400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Monsieur+La+Doulaise&display=swap" rel="stylesheet">
+
+    <!-- Forum font --> <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Forum font --> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Forum font --> <link href="https://fonts.googleapis.com/css2?family=Forum&display=swap" rel="stylesheet">
+
+</head>
+
+<body class="travel">
+    <nav class="navbar">
+        <div class="nav-logo"><a href="./index.html">Aaron & Ionela</a></div>
+
+        <!-- Language toggle button -->
+        <button class="button" id="lang-toggle">Español</button>
+
+        <!-- Language transition overlay -->
+        <div id="lang-transition-overlay"></div>
+
+        
+        <!-- Hamburger Icon -->
+        <div class="hamburger" id="hamburger">
+            ☰
+        </div>
+
+        <!-- Navigation Links -->
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#location">The Location</a></li>
+            <li><a href="#wedding">The Wedding</a></li>
+            <li><a href="#rsvp">RSVP</a></li>
+            <li><a href="./travel.html">Travel Information</a></li>
+            <div class="close-menu" id="close-menu">X</div>
+        </ul>
+      </nav>   
+      
+      <!-- Language transition overlay (needed for the button to work!) -->
+      <div id="lang-transition-overlay"></div>
+
+
+
+    <header class="header lang lang-en active">
+        <h1>Travel Information</h1>
+    </header>
+
+    <header class="header lang lang-es">
+        <h1>Información de Viaje</h1>
+    </header>
+
+    <main>
+        <!-- English Travel Info -->
+        <section class="travel-section lang lang-en active">
+            <div class="airport">
+                <h3>Airport</h3>
+                <p>The closest major airport is Dublin Airport (DUB). It’s about 2 hours by car to the Slieve Russell Hotel. We recommend renting a car or organizing a private transfer.</p>
+                <p>There are also options such as:</p>
+                <ul>
+                    <li>
+                        <strong>Knock Airport (NOC)</strong> – about 2.5 hours away, with limited flights.
+                    </li>
+                    <li>
+                        <strong>Belfast International Airport (BFS)</strong> - about 2.5 hours away, with more international options.
+                    </li>
+                </ul>
+            </div>
+        
+            
+            <div class="accomodation">
+                <h3>Nearby Accommodation</h3>
+                    <ul>
+                        <li><strong>Slieve Russell Hotel</strong> – On-site venue with beautiful rooms and amenities.</li>
+                        <li><strong>Hotel Kilmore</strong> – Located in Cavan town, around 30 mins from the venue.</li>
+                        <li><strong>Various AirBnb's are available also.</strong> – Check out the local listings for options.</li>
+                    </ul>
+            </div>
+    
+            <div class="dublin-head">
+                <div class="dublin-picture">
+                        <div class="overlay-text">
+                            <h3>Dublin</h3>
+                        </div>
+                    </div>
+                    <div class="dublin-paragraph">
+                        <h3>Things to Do – Dublin</h3>
+                        <ul>
+                            <li>Visit the Guinness Storehouse</li>
+                            <li>Explore Trinity College and the Book of Kells</li>
+                            <li>Walk through St. Stephen’s Green and Grafton Street</li>
+                        </ul>
+                    </div>
+            </div>
+        
+            <div class="west-head">
+                <div class="west-picture">
+                    <div class="overlay-text">
+                        <h3>The West Coast</h3> 
+                    </div>
+                </div>
+                <div class="west-paragraph">
+                    <p>For those who want to explore the beautiful West Coast of Ireland, we recommend:</p>
+                        <ul>
+                            <li>Cliffs of Moher – iconic sea cliffs with stunning views</li>
+                            <li>Galway City – charming streets, music, and food</li>
+                            <li>Connemara – rugged scenery and traditional Irish culture</li>
+                        </ul>
+                    <p>We recommend spending a few days in the area to fully appreciate its beauty.</p>
+                </div>
+            </div>
+        </section>
+    
+        <!-- Spanish Travel Info -->
+        <section class="travel-section lang lang-es">
+            <div class="airport">
+                <h3>Aeropuerto</h3>
+                <p>El aeropuerto más cercano es el Aeropuerto de Dublín (DUB). Está a unas 2 horas en coche del Slieve Russell Hotel. Recomendamos alquilar un coche o organizar un traslado privado.</p>
+                <p>También hay opciones como:</p>
+                <ul>
+                    <li>
+                        <strong>Aeropuerto de Knock (NOC)</strong> – a unas 2.5 horas de distancia, con vuelos limitados.
+                    </li>
+                    <li>
+                        <strong>Aeropuerto Internacional de Belfast (BFS)</strong> - a unas 2.5 horas de distancia, con más opciones internacionales.
+                    </li>
+                </ul>
+            </div>
+        
+            
+            <div class="accomodation">
+                <h3>Alojamiento cercano</h3>
+                    <ul>
+                        <li><strong>Slieve Russell Hotel</strong> – Hotel en el lugar con hermosas habitaciones y comodidades.</li>
+                        <li><strong>Hotel Kilmore</strong> – Ubicado en la ciudad de Cavan, a unas 30 minutos del lugar.</li>
+                        <li><strong>También hay varias opciones de AirBnb.</strong> – Consulta los listados locales para opciones.</li>
+                    </ul>
+            </div>
+
+            <div class="dublin-head">
+                <div class="dublin-picture">
+                        <div class="overlay-text">
+                            <h3>Dublin</h3>
+                        </div>
+                    </div>
+                    <div class="dublin-paragraph">
+                        <h3>Cosas que hacer – Dublín</h3>
+                        <ul>
+                            <li>Visitar la Guinness Storehouse</li>
+                            <li>Explorar el Trinity College y el Libro de Kells</li>
+                            <li>Pasear por St. Stephen’s Green y Grafton Street</li>
+                        </ul>
+                    </div>
+            </div>
+        
+            <div class="west-head">
+                <div class="west-picture">
+                    <div class="overlay-text">
+                        <h3>La costa oeste</h3>
+                    </div>
+                </div>
+                <div class="west-paragraph">
+                    <p>Para aquellos que quieran explorar la hermosa costa oeste de Irlanda, recomendamos:</p>
+                        <ul>
+                            <li>Acantilados de Moher – acantilados icónicos con vistas impresionantes</li>
+                            <li>Ciudad de Galway – calles encantadoras, música y comida</li>
+                            <li>Connemara – paisajes escarpados y cultura irlandesa tradicional</li>
+                        </ul>
+                    <p>Recomendamos pasar unos días en la zona para apreciar plenamente su belleza.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Ionela & Aaron. All rights reserved.</p>
+    </footer>
+    
+    <script src="./assets/js/main.js"></script>
+      
+          
+</body>
+
+</html>
