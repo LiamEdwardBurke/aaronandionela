@@ -268,7 +268,8 @@ body:not(.js-enabled) .lang-en {
   /* Logo */
   .nav-logo {
     font-size: 2rem;
-    font-family: "Citadel Script", serif; 
+    font-family: "Citadel Script", serif;
+    mix-blend-mode: difference;
   }
 
   .nav-right {
@@ -586,7 +587,7 @@ section {
   }
 
   .rsvp-name {
-    margin: 10px
+    margin-bottom: 1rem;
   }
 
 input {

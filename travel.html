@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel Information</title>
+    <title>Ionela & Aaron wedding website</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     
@@ -39,61 +39,66 @@
 
         <!-- Navigation Links -->
         <ul class="nav-links" id="nav-links">
-            <li><a href="#location">The Location</a></li>
-            <li><a href="#wedding">The Wedding</a></li>
-            <li><a href="#rsvp">RSVP</a></li>
+            <li><a href="./index.html/#location">The Location</a></li>
+            <li><a href="./index.html/#wedding">The Wedding</a></li>
+            <li><a href="./index.html/#rsvp">RSVP</a></li>
             <li><a href="./travel.html">Travel Information</a></li>
             <div class="close-menu" id="close-menu">X</div>
         </ul>
-      </nav>   
+      </nav>
       
       <!-- Language transition overlay (needed for the button to work!) -->
       <div id="lang-transition-overlay"></div>
 
 
 
-    <header class="header lang lang-en active">
+    <header class="header-image lang lang-en active">
         <h1>Travel Information</h1>
     </header>
 
-    <header class="header lang lang-es">
+    <header class="header-image lang lang-es">
         <h1>Información de Viaje</h1>
     </header>
 
     <main>
         <!-- English Travel Info -->
-        <section class="travel-section lang lang-en active">
-            <div class="airport">
-                <h3>Airport</h3>
-                <p>The closest major airport is Dublin Airport (DUB). It’s about 2 hours by car to the Slieve Russell Hotel. We recommend renting a car or organizing a private transfer.</p>
-                <p>There are also options such as:</p>
-                <ul>
-                    <li>
-                        <strong>Knock Airport (NOC)</strong> – about 2.5 hours away, with limited flights.
-                    </li>
-                    <li>
-                        <strong>Belfast International Airport (BFS)</strong> - about 2.5 hours away, with more international options.
-                    </li>
-                </ul>
-            </div>
-        
-            
-            <div class="accomodation">
-                <h3>Nearby Accommodation</h3>
+        <div class ="travel-info lang lang-en active">
+            <section class="travel-info head">
+                <div class="airport content">
+                    <h3>Airport</h3>
+                    <p>The closest major airport is Dublin Airport (DUB). It’s about 2 hours by car to the Slieve Russell Hotel. We recommend renting a car or organizing a private transfer.</p>
+                    <p>There are also options such as:</p>
                     <ul>
-                        <li><strong>Slieve Russell Hotel</strong> – On-site venue with beautiful rooms and amenities.</li>
-                        <li><strong>Hotel Kilmore</strong> – Located in Cavan town, around 30 mins from the venue.</li>
-                        <li><strong>Various AirBnb's are available also.</strong> – Check out the local listings for options.</li>
+                        <li>
+                            <strong>Knock Airport (NOC)</strong> – about 2.5 hours away, with limited flights.
+                        </li>
+                        <li>
+                            <strong>Belfast International Airport (BFS)</strong> - about 2.5 hours away, with more international options.
+                        </li>
                     </ul>
-            </div>
+                </div>
+            
+                
+                <div class="accomodation content">
+                    <h3>Nearby Accommodation</h3>
+                        <ul>
+                            <li><strong>Slieve Russell Hotel</strong> – On-site venue with beautiful rooms and amenities.</li>
+                            <li><strong>Hotel Kilmore</strong> – Located in Cavan town, around 30 mins from the venue.</li>
+                            <li><strong>Various AirBnb's are available also.</strong> – Check out the local listings for options.</li>
+                        </ul>
+                </div>
+            </section>
+        </div>
     
-            <div class="dublin-head">
-                <div class="dublin-picture">
+        <!-- English Dublin Info -->
+        <div class="dublin lang lang-en active">  
+            <section class="dublin head">
+                <div class="dublin picture left">
                         <div class="overlay-text">
                             <h3>Dublin</h3>
                         </div>
                     </div>
-                    <div class="dublin-paragraph">
+                    <div class="dublin content right">
                         <h3>Things to Do – Dublin</h3>
                         <ul>
                             <li>Visit the Guinness Storehouse</li>
@@ -101,15 +106,18 @@
                             <li>Walk through St. Stephen’s Green and Grafton Street</li>
                         </ul>
                     </div>
-            </div>
-        
-            <div class="west-head">
-                <div class="west-picture">
+            </section>
+        </div>
+
+        <!-- English West Coast Info -->
+        <div class="west lang lang-en active">    
+            <section class="west head">
+                <div class="west picture right">
                     <div class="overlay-text">
                         <h3>The West Coast</h3> 
                     </div>
                 </div>
-                <div class="west-paragraph">
+                <div class="west content left">
                     <p>For those who want to explore the beautiful West Coast of Ireland, we recommend:</p>
                         <ul>
                             <li>Cliffs of Moher – iconic sea cliffs with stunning views</li>
@@ -118,42 +126,48 @@
                         </ul>
                     <p>We recommend spending a few days in the area to fully appreciate its beauty.</p>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
     
         <!-- Spanish Travel Info -->
-        <section class="travel-section lang lang-es">
-            <div class="airport">
-                <h3>Aeropuerto</h3>
-                <p>El aeropuerto más cercano es el Aeropuerto de Dublín (DUB). Está a unas 2 horas en coche del Slieve Russell Hotel. Recomendamos alquilar un coche o organizar un traslado privado.</p>
-                <p>También hay opciones como:</p>
-                <ul>
-                    <li>
-                        <strong>Aeropuerto de Knock (NOC)</strong> – a unas 2.5 horas de distancia, con vuelos limitados.
-                    </li>
-                    <li>
-                        <strong>Aeropuerto Internacional de Belfast (BFS)</strong> - a unas 2.5 horas de distancia, con más opciones internacionales.
-                    </li>
-                </ul>
-            </div>
+         <div class="travel-info lang lang-es">
+            <section class="travel-info head">
+                <div class="airport content">
+                    <h3>Aeropuerto</h3>
+                    <p>El aeropuerto más cercano es el Aeropuerto de Dublín (DUB). Está a unas 2 horas en coche del Slieve Russell Hotel. Recomendamos alquilar un coche u organizar un traslado privado.</p>
+                    <p>También hay opciones como:</p>
+                    <ul>
+                        <li>
+                            <strong>Aeropuerto de Knock (NOC)</strong> – a unas 2.5 horas de distancia, con vuelos limitados.
+                        </li>
+                        <li>
+                            <strong>Aeropuerto Internacional de Belfast (BFS)</strong> - a unas 2.5 horas de distancia, con más opciones internacionales.
+                        </li>
+                    </ul>
+                </div>
+            
         
             
-            <div class="accomodation">
-                <h3>Alojamiento cercano</h3>
-                    <ul>
-                        <li><strong>Slieve Russell Hotel</strong> – Hotel en el lugar con hermosas habitaciones y comodidades.</li>
-                        <li><strong>Hotel Kilmore</strong> – Ubicado en la ciudad de Cavan, a unas 30 minutos del lugar.</li>
-                        <li><strong>También hay varias opciones de AirBnb.</strong> – Consulta los listados locales para opciones.</li>
-                    </ul>
-            </div>
+                <div class="accomodation content">
+                    <h3>Alojamiento cercano</h3>
+                        <ul>
+                            <li><strong>Slieve Russell Hotel</strong> – Hotel en el lugar con hermosas habitaciones y comodidades.</li>
+                            <li><strong>Hotel Kilmore</strong> – Ubicado en la ciudad de Cavan, a unas 30 minutos del lugar.</li>
+                            <li><strong>También hay varias opciones de AirBnb.</strong> – Consulta los listados locales para opciones.</li>
+                        </ul>
+                </div>
+            </section>
+        </div>
 
-            <div class="dublin-head">
-                <div class="dublin-picture">
+        <!-- Spanish Dublin Info -->
+        <div class="dublin lang lang-es">    
+            <section class="dublin head">
+                <div class="dublin picture left">
                         <div class="overlay-text">
                             <h3>Dublin</h3>
                         </div>
                     </div>
-                    <div class="dublin-paragraph">
+                    <div class="dublin content right">
                         <h3>Cosas que hacer – Dublín</h3>
                         <ul>
                             <li>Visitar la Guinness Storehouse</li>
@@ -161,15 +175,18 @@
                             <li>Pasear por St. Stephen’s Green y Grafton Street</li>
                         </ul>
                     </div>
-            </div>
+            </section>
+        </div>
         
-            <div class="west-head">
-                <div class="west-picture">
+        <!-- Spanish West Coast Info -->
+        <div class="west lang lang-es">    
+            <section class="west head">
+                <div class="west picture right">
                     <div class="overlay-text">
                         <h3>La costa oeste</h3>
                     </div>
                 </div>
-                <div class="west-paragraph">
+                <div class="west content left">
                     <p>Para aquellos que quieran explorar la hermosa costa oeste de Irlanda, recomendamos:</p>
                         <ul>
                             <li>Acantilados de Moher – acantilados icónicos con vistas impresionantes</li>
@@ -178,8 +195,8 @@
                         </ul>
                     <p>Recomendamos pasar unos días en la zona para apreciar plenamente su belleza.</p>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
     </main>
 
     <footer>

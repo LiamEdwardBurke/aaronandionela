@@ -123,15 +123,12 @@ if (navbar) {
 document.addEventListener("DOMContentLoaded", function () {
   const scriptURL = "https://script.google.com/macros/s/AKfycbxYalcjtL5BraUZ7eAMYg5NTQS01NaXI0KGEkubguatPrlf1x5gV9KH_Yh91J2r07I0sg/exec";
 
-  // Listen for any form submission on RSVP forms
   const forms = document.querySelectorAll(".rsvp-form");
-
 
   forms.forEach((form) => {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
 
-      // Skip hidden/inactive forms
       if (!form.closest(".lang.active")) return;
 
       const formData = new FormData(form);
@@ -155,8 +152,12 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   function showConfirmationPopup() {
+    const isSpanish = document.querySelector('.lang-es.active');
     const popup = document.createElement("div");
-    popup.textContent = "🎉 RSVP submitted successfully!";
+    popup.textContent = isSpanish
+      ? "🎉 ¡RSVP enviado con éxito!"
+      : "🎉 RSVP submitted successfully!";
+
     popup.style.position = "fixed";
     popup.style.top = "50%";
     popup.style.left = "50%";
@@ -175,3 +176,4 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 3000);
   }
 });
+

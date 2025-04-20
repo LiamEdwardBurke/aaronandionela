@@ -23,7 +23,7 @@
 
 <body>
     <nav class="navbar">
-        <div class="nav-logo"><a href="./index.html">Aaron & Ionela</a></div>
+        <div class="nav-logo"><a href="./index.html" class="nav-logo">Aaron & Ionela</a></div>
 
         <!-- Language toggle button -->
         <button class="button" id="lang-toggle">Español</button>
@@ -39,9 +39,9 @@
 
         <!-- Navigation Links -->
         <ul class="nav-links" id="nav-links">
-            <li><a href="#location">The Location</a></li>
-            <li><a href="#wedding">The Wedding</a></li>
-            <li><a href="./travel.html">Travel Information</a></li>
+            <li><a href="#location" class="nav-links">The Location</a></li>
+            <li><a href="#wedding" class="nav-links">The Wedding</a></li>
+            <li><a href="./travel.html" class="nav-links">Travel Information</a></li>
             <li><a href="#rsvp" class="button">RSVP</a></li>
             <div class="close-menu" id="close-menu">X</div>
         </ul>
@@ -129,10 +129,10 @@
                 <div class="wedding content right">
                     <h2>La Boda</h2>
                     <p>Estamos planeando una hermosa ceremonia seguida de una recepción llena de amor, risas y baile.
-                    Tenemos muchas sorpresas emocionantes preparadas para nuestros invitados, y no podemos esperar para compartir este día especial con ustedes.</p>
+                    Tenemos muchas sorpresas emocionantes preparadas para nuestros invitados, y no podemos esperar para compartir este día especial con vosotros.</p>
                     <p>Código de vestimenta: Se solicita vestimenta formal.</p>
                     <p>Tendremos una variedad de comida y bebidas deliciosas, así como entretenimiento.</p>
-                    <p>Estamos muy agradecidos de tenerlos en nuestras vidas y no podemos esperar para celebrar este día especial con ustedes.</p>
+                    <p>Estamos muy agradecidos de tenerlos en nuestras vidas y no podemos esperar para celebrar este día especial con vosotros.</p>
                 </div>
             </section>
         </div>
@@ -154,7 +154,7 @@
                     We are excited to celebrate our wedding at this incredible location, surrounded by family and friends.
                     We hope you can join us!</p>
                     <p>To help with travel plans you can read our travel information page.</p>
-                    <button href ="./travel.html" class="button">Travel Information</button>
+                    <a href ="./travel.html" class="button">Travel Information</a>
                 </div>
             </section>
         </div>
@@ -162,12 +162,12 @@
         <!-- Spanish Location -->
         <div class="location lang lang-es">
             <section class="location head" id="location">
-                <div class="location picture">
+                <div class="location picture right">
                     <div class="overlay-text">
                         <h3></h3>
                     </div>
                 </div>
-                <div class="location content">  
+                <div class="location content left">  
                     <h2>La Ubicación</h2>
                     <p>
                         Dirección: The Slieve Rusell Hotel, Ballyconnell, Co. Cavan, Irlanda, H14 FE03
@@ -175,10 +175,8 @@
                     <p>The Slieve Russell Hotel es un lugar impresionante ubicado en Co. Cavan, Irlanda. Ofrece hermosos paisajes y lujosos alojamientos para nuestro día especial.
                     Estamos emocionados de celebrar nuestra boda en este increíble lugar, rodeados de familiares y amigos.
                     ¡Esperamos que puedas unirte a nosotros!</p>
-                    <div class="location button">
                         <p>Para ayudar con los planes de viaje, puedes leer nuestra página de información de viaje.</p>
                         <a href ="./travel.html" class="button">Información de Viaje</a>
-                    </div>
                 </div>
             </section>
         </div>
@@ -193,7 +191,7 @@
                     <p>We kindly ask that you RSVP by 1st July 2025 to help us with our planning.</p>
                 </div>
                 <div class="rsvp form">
-                    <form id="rsvp-form">
+                    <form class="rsvp-form">
                         <div id="guest-list">
                           <div class="rsvp-name">
                             <label for="guest-1">Name:</label>
@@ -223,7 +221,7 @@
                     <p>Te pedimos amablemente que confirmes tu asistencia antes del 1 de julio de 2025 para ayudarnos con nuestra planificación.</p>
                 </div>
                 <div class="rsvp form">
-                    <form method="post" id="rsvp-form">
+                    <form class="rsvp-form">
 
                         <div class="rsvp-name">
                             <label for="name">Nombre:</label>
