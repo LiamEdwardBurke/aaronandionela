@@ -1,0 +1,658 @@
+.alex-brush-regular {
+  font-family: "Alex Brush", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+  
+  .cormorant-sc-light {
+    font-family: "Cormorant SC", serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  .cormorant-sc-regular {
+    font-family: "Cormorant SC", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .cormorant-sc-medium {
+    font-family: "Cormorant SC", serif;
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+  .cormorant-sc-semibold {
+    font-family: "Cormorant SC", serif;
+    font-weight: 600;
+    font-style: normal;
+  }
+  
+  .cormorant-sc-bold {
+    font-family: "Cormorant SC", serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  .forum-regular {
+    font-family: "Forum", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Citadel Script';
+    src: url(./assets/Fonts/CitadelScriptStd.otf);
+    font-weight: normal;
+    font-style: normal;
+  }
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+body {
+  margin: 0;
+  background-color: #F6F0F0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+body, html {
+    font-family: serif;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+h1 {
+    font-family: "Citadel Script", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 3.5rem;
+}
+
+h2 {
+    font-family: "Cormorant SC", serif;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 2.5rem;
+    margin: 20px;
+}
+
+h3 {
+    font-family: "Cormorant SC", serif;
+    font-weight: 400;
+    font-style: normal;
+    margin: 10px;
+    font-size: 1.5rem;
+}
+
+p {
+    font-family: "Cormorant SC", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14pt;
+    max-width: 800px;
+    text-align: left;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+li {
+    font-family: "Cormorant SC", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14pt;
+    max-width: 800px;
+    text-align: left;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.header-image h2 {
+  font-family: "Cormorant SC", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2rem;
+}
+
+.header-image {
+    background-image: url('./assets/images/header2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    padding-top: 100px;
+}
+
+/* Overlay using ::before */
+.header-image::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* black with 30% opacity */
+  z-index: 0; /* behind text */
+}
+
+/* Make sure header content is above the overlay */
+.header-image > * {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 1000px) {
+    .header-image {
+      background-image: url('./assets/images/header.jpg');
+
+    }
+  }
+  
+
+  /* Language selection */
+  .lang {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    display: none;
+  }
+  
+  .lang.active {
+    display: block;
+    opacity: 1;
+  }
+
+  section.lang.active, div.lang.active {
+    display: flex;
+    flex-direction: column;
+}
+
+body:not(.js-enabled) .lang-es {
+  display: none !important;
+}
+
+body:not(.js-enabled) .lang-en {
+  display: flex !important;
+}
+
+  #lang-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+
+  #lang-transition-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  button#lang-toggle {
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button#lang-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+
+
+  /* Navbar container */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: transparent;
+    transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+    color: white;
+  }
+
+  .navbar.scrolled {
+    background-color: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .navbar.scrolled .nav-links li a {
+    color: #fff;
+  }
+  
+  .navbar .nav-links li a {
+    transition: color 0.3s ease;
+  }
+  
+  
+  
+  /* Logo */
+  .nav-logo {
+    font-size: 2rem;
+    font-family: "Citadel Script", serif;
+    mix-blend-mode: difference;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .nav-links-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Navigation links */
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    text-align: center;
+    font-family: "Cormorant SC", serif;
+    font-size: 1.5rem;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .nav-links.active {
+    transform: translateX(0);
+  }
+  
+  .nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-links li a:hover {
+    color: #727D73;
+  }
+  /* Hamburger styles */
+  .hamburger {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+
+  .close-menu {
+    display: none;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    font-size: 2rem;
+    color: #fff;
+    cursor: pointer;
+    z-index: 1001;
+    font-family: sans-serif;
+    font-weight: 400;
+  }
+  
+  
+  .close-menu:hover {
+    color: #727D73;
+  }
+  
+  /* Responsive - mobile */
+  @media (max-width: 1000px) {
+    .hamburger {
+      display: block;
+    }
+  
+    .nav-links {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      background-color: #AAB99A;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: 999;
+      transform: translateX(100%);
+      transition: transform 0.5s ease-in-out;
+    }
+    
+    .nav-links.active {
+      transform: translateX(0);
+    }
+    
+
+    .nav-links li a {
+      font-size: 1.5rem;
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .nav-links li a:hover {
+      color: #727D73;
+    }
+
+    h3 {
+        text-align: center;
+    }
+    
+    .close-menu {
+      display: block;
+    }
+  }
+  
+
+
+  .countdown-box {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* spacing between boxes */
+    margin: 20px 0;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+
+  .countdown-box.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+.time-box {
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.0);
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 1.2rem;
+}
+
+.time-box span {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  font-family: 'Cormorant SC', serif; /* or your preferred font */
+}
+
+.time-box small {
+  font-size: 1.2rem;
+  color: #fff;
+  font-family: 'Cormorant SC', serif;
+}
+
+.header-link {
+  padding-top: 40px;
+}
+
+.button {
+  font-family: "Cormorant SC", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.2rem;
+  background-color: transparent;
+  color: #fff;
+  align-items: center;
+  text-decoration: none;
+  border: 1px solid #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+
+section {
+    width: 100%;
+  }
+
+
+.head {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0rem;
+  width: 100%;
+}
+
+.picture {
+  flex: 1;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: rgba(0, 0, 0, 0.4); /* fallback color */
+  height: 75vh;
+}
+
+.picture::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 0;
+}
+
+.content {
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.overlay-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* center the text */
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.0); /* optional dark overlay behind text */
+  border-radius: 10px;
+  font-size: 1.5rem;
+}
+
+.left {
+  order: 1;
+}
+
+.right {
+  order: 2;
+}
+
+@media (max-width: 1000px) {
+  .head {
+    flex-direction: column;
+    text-align: center;
+    height: auto;
+  }
+    
+  .picture {
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 300px;
+  }
+    
+  .content {
+    padding: 2.2rem;
+   }
+
+  .left {
+    order: 1;
+  }
+
+  .right {
+      order: 1;
+  }
+  .content {
+    order: 2;
+  }
+ }
+
+
+
+/* LOCATION CONTENT */  
+  .location .head {
+    background-color: #727D73;
+    color: #F6F0F0;
+  }
+
+
+  .location .picture {
+    background-image: url("./assets/images/location.jpg");
+  }
+
+  .location .button {
+    margin-top: 20px;
+  }
+
+
+   
+/* WEDDING CONTENT */
+
+  .wedding .picture {
+    background-image: url('./assets/images/wedding.jpg');
+  }   
+
+
+
+/* RSVP CONTENT */
+
+.rsvp .head {
+  flex-direction: column;
+}
+
+.form {
+    width: 100%;
+    max-width: 500px;
+    order: 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+  }
+
+  .rsvp-name {
+    margin-bottom: 1rem;
+  }
+
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+  }
+
+  label {
+    font-family: "Cormorant SC", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  form > .button {
+    margin-top: 20px;
+    color: #727D73;
+    border: 1px solid #727D73;
+  }
+
+  form > .button:hover {
+    background-color: #727D73;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid #fff;
+  }
+
+  footer {
+    background-color: #727D73;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    font-family: "Cormorant SC", serif;
+  }
+
+
+
+
+/* TRAVEL HEADER */
+  .travel .header-image {
+    background-image: url('./assets/images/header-travel-desktop.jpg');
+}
+
+@media (max-width: 1000px) {
+    .travel .header-image {
+      background-image: url('./assets/images/header-travel-mobile.jpg');
+    }
+  }
+
+/* TRAVEL CONTENT */
+.travel-info .head {
+  flex-direction: column;
+}
+
+/* DUBLIN CONTENT */
+.dublin .head {
+  background-color: #727D73;
+  color: #F6F0F0;
+}
+
+  .dublin .picture {
+    background-image: url('./assets/images/dublin.jpg');
+  }
+
+/* WEST COAST CONTENT */
+  .west .picture {
+    background-image: url('./assets/images/westcoast.jpg');
+  }
