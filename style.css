@@ -42,7 +42,7 @@
   
   @font-face {
     font-family: 'Citadel Script';
-    src: url(./assets/Fonts/CitadelScriptStd.otf);
+    src: url(assets/Fonts/CitadelScriptStd.otf);
     font-weight: normal;
     font-style: normal;
   }
@@ -131,7 +131,7 @@ a {
 }
 
 .header-image {
-    background-image: url('./assets/images/header2.jpg');
+    background-image: url('assets/images/header2.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -166,7 +166,7 @@ a {
 
 @media (max-width: 1000px) {
     .header-image {
-      background-image: url('./assets/images/header.jpg');
+      background-image: url('assets/images/header.jpg');
 
     }
   }
@@ -552,19 +552,19 @@ section {
 
 
   .location .picture {
-    background-image: url("./assets/images/location.jpg");
+    background-image: url("assets/images/location.jpg");
   }
 
-  .location .button {
-    margin-top: 20px;
-  }
+  .location .content p:last-of-type {
+    margin-bottom: 20px;
+  } /* Added to select the last paragraph in the location content as the <p> tag above it has margin: 0 auto; in your CSS (style.css, line 104), which removes its bottom margin entirely. */
 
 
    
 /* WEDDING CONTENT */
 
   .wedding .picture {
-    background-image: url('./assets/images/wedding.jpg');
+    background-image: url('assets/images/wedding.jpg');
   }   
 
 
@@ -628,12 +628,12 @@ input {
 
 /* TRAVEL HEADER */
   .travel .header-image {
-    background-image: url('./assets/images/header-travel-desktop.jpg');
+    background-image: url('assets/images/header-travel-desktop.jpg');
 }
 
 @media (max-width: 1000px) {
     .travel .header-image {
-      background-image: url('./assets/images/header-travel-mobile.jpg');
+      background-image: url('assets/images/header-travel-mobile.jpg');
     }
   }
 
@@ -649,10 +649,10 @@ input {
 }
 
   .dublin .picture {
-    background-image: url('./assets/images/dublin.jpg');
+    background-image: url('assets/images/dublin.jpg');
   }
 
 /* WEST COAST CONTENT */
   .west .picture {
-    background-image: url('./assets/images/westcoast.jpg');
+    background-image: url('assets/images/westcoast.jpg');
   }

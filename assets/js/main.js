@@ -1,126 +1,177 @@
-// Language toggle functionality
-const toggleBtn = document.getElementById('lang-toggle');
-const overlay = document.getElementById('lang-transition-overlay');
+document.addEventListener("DOMContentLoaded", () => {
+  // Function to scroll to saved hash from sessionStorage
+  function scrollToSavedHash() {
+    const hash = sessionStorage.getItem('scrollToHash');
+    console.log("Hash stored in sessionStorage:", hash); // Debugging line
+    if (!hash) return;
 
-if (toggleBtn && overlay) {
-  toggleBtn.addEventListener('click', () => {
-    overlay.classList.add('active');
+    let attempts = 0;
+    const maxAttempts = 10;
 
-    setTimeout(() => {
+    const tryScroll = () => {
+      const target = document.getElementById(hash);
+      if (target) {
+        console.log("Scrolling to target:", target); // Debugging line
+        target.scrollIntoView({ behavior: 'smooth' });
+        sessionStorage.removeItem('scrollToHash');
+      } else if (attempts < maxAttempts) {
+        attempts++;
+        setTimeout(tryScroll, 100);
+      }
+    };
+
+    tryScroll();
+  }
+
+  // Fetch the navbar HTML and inject it
+  fetch("navbar.html")
+    .then(response => response.text())
+    .then(data => {
+      const navbarContainer = document.getElementById("navbar-container");
+      if (navbarContainer) {
+        navbarContainer.innerHTML = data;
+        console.log("Navbar loaded successfully"); // Debugging line
+
+        // After navbar is loaded, initialize features and scroll to saved hash
+        setTimeout(() => {
+          initNavbarFeatures();
+          scrollToSavedHash();
+        }, 100);
+      } else {
+        console.error("Navbar container not found."); // Debugging line
+      }
+    })
+    .catch((error) => {
+      console.error("Error loading navbar:", error); // Debugging line
+    });
+
+  // Initialize navbar features (e.g., language toggle, menu interactions)
+  function initNavbarFeatures() {
+    const toggleBtn = document.getElementById('lang-toggle');
+    const overlay = document.getElementById('lang-transition-overlay');
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    const closeMenuBtn = document.getElementById('close-menu');
+    const navLinkElements = document.querySelectorAll('#nav-links a');
+    const navbar = document.querySelector('.navbar');
+
+    // Language toggle functionality
+    if (toggleBtn && overlay) {
+      toggleBtn.addEventListener('click', () => {
+        overlay.classList.add('active');
+
+        setTimeout(() => {
+          const englishElements = document.querySelectorAll('.lang-en');
+          const spanishElements = document.querySelectorAll('.lang-es');
+          const isEnglishActive = Array.from(englishElements).some(el => el.classList.contains('active'));
+
+          englishElements.forEach(el => {
+            el.classList.toggle('active', !isEnglishActive);
+            el.style.display = !isEnglishActive ? 'flex' : 'none';
+          });
+
+          spanishElements.forEach(el => {
+            el.classList.toggle('active', isEnglishActive);
+            el.style.display = isEnglishActive ? 'flex' : 'none';
+          });
+
+          toggleBtn.textContent = isEnglishActive ? 'English' : 'Español';
+
+          setTimeout(() => {
+            overlay.classList.remove('active');
+          }, 300);
+        }, 300);
+      });
+
+      // Default to English on load
       const englishElements = document.querySelectorAll('.lang-en');
       const spanishElements = document.querySelectorAll('.lang-es');
-      const isEnglishActive = Array.from(englishElements).some(el => el.classList.contains('active'));
 
       englishElements.forEach(el => {
-        el.classList.toggle('active', !isEnglishActive);
-        el.style.display = !isEnglishActive ? 'flex' : 'none';
+        el.classList.add('active');
+        el.style.display = 'flex';
       });
 
       spanishElements.forEach(el => {
-        el.classList.toggle('active', isEnglishActive);
-        el.style.display = isEnglishActive ? 'flex' : 'none';
+        el.classList.remove('active');
+        el.style.display = 'none';
       });
 
-      toggleBtn.textContent = isEnglishActive ? 'English' : 'Español';
-
-      setTimeout(() => {
-        overlay.classList.remove('active');
-      }, 300);
-    }, 300);
-  });
-
-  document.addEventListener('DOMContentLoaded', () => {
-    const englishElements = document.querySelectorAll('.lang-en');
-    const spanishElements = document.querySelectorAll('.lang-es');
-
-    englishElements.forEach(el => {
-      el.classList.add('active');
-      el.style.display = 'flex';
-    });
-
-    spanishElements.forEach(el => {
-      el.classList.remove('active');
-      el.style.display = 'none';
-    });
-
-    const toggleBtn = document.getElementById('lang-toggle');
-    if (toggleBtn) toggleBtn.textContent = 'Español';
-  });
-
-  document.body.classList.add('js-enabled');
-}
-
-// Countdown (if present)
-const countDownDate = new Date("Aug 20, 2025 13:00:00").getTime();
-
-function updateCountdowns() {
-  const now = new Date().getTime();
-  const distance = countDownDate - now;
-
-  if (distance < 0) return;
-
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  document.querySelectorAll('.countdown-box').forEach(box => {
-    box.querySelector('.days').textContent = days;
-    box.querySelector('.hours').textContent = hours;
-    box.querySelector('.minutes').textContent = minutes;
-    box.querySelector('.seconds').textContent = seconds;
-  });
-}
-
-if (document.querySelector('.countdown-box')) {
-  updateCountdowns();
-  setInterval(updateCountdowns, 1000);
-  window.addEventListener('load', () => {
-    document.querySelectorAll('.countdown-box').forEach(box => {
-      box.classList.add('visible');
-    });
-  });
-}
-
-// Hamburger menu toggle (handles both navs)
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.getElementById('nav-links');
-const closeMenuBtn = document.getElementById('close-menu');
-
-hamburger.addEventListener('click', () => {
-  navLinks.classList.toggle('active');
-});
-
-// Close menu functionality when "X" is clicked
-closeMenuBtn.addEventListener('click', () => {
-  navLinks.classList.remove('active');  // Hide the menu
-});
-
-// Close menu when clicking outside of it
-const navLinkElements = document.querySelectorAll('#nav-links a');
-
-navLinkElements.forEach(link => {
-  link.addEventListener('click', () => {
-    navLinks.classList.remove('active');
-  });
-});
-
-
-// Sticky navbar scroll effect
-const navbar = document.querySelector('.navbar');
-if (navbar) {
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 10) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
+      toggleBtn.textContent = 'Español';
+      document.body.classList.add('js-enabled');
     }
-  });
-}
 
+    // Hamburger menu toggle
+    if (hamburger && navLinks) {
+      hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+      });
+    }
 
-// Popup submit RSVP button
-document.addEventListener("DOMContentLoaded", function () {
+    // Close menu functionality when "X" is clicked
+    if (closeMenuBtn && navLinks) {
+      closeMenuBtn.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    }
+
+    // Close menu when clicking a nav link
+    navLinkElements.forEach(link => {
+      link.addEventListener('click', (e) => {
+        // Ensure hash is saved when navigating to a section within the same page
+        const href = link.getAttribute('href');
+        if (href.startsWith("#")) {
+          sessionStorage.setItem('scrollToHash', href.substring(1)); // Save the hash without '#'
+        }
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // Sticky navbar on scroll
+    if (navbar) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 10) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      });
+    }
+  }
+
+  // Countdown (if present)
+  const countDownDate = new Date("Aug 20, 2025 13:00:00").getTime();
+
+  function updateCountdowns() {
+    const now = new Date().getTime();
+    const distance = countDownDate - now;
+
+    if (distance < 0) return;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.querySelectorAll('.countdown-box').forEach(box => {
+      box.querySelector('.days').textContent = days;
+      box.querySelector('.hours').textContent = hours;
+      box.querySelector('.minutes').textContent = minutes;
+      box.querySelector('.seconds').textContent = seconds;
+    });
+  }
+
+  if (document.querySelector('.countdown-box')) {
+    updateCountdowns();
+    setInterval(updateCountdowns, 1000);
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.countdown-box').forEach(box => {
+        box.classList.add('visible');
+      });
+    });
+  }
+
+  // Popup submit RSVP button
   const scriptURL = "https://script.google.com/macros/s/AKfycbxYalcjtL5BraUZ7eAMYg5NTQS01NaXI0KGEkubguatPrlf1x5gV9KH_Yh91J2r07I0sg/exec";
 
   const forms = document.querySelectorAll(".rsvp-form");
@@ -176,4 +227,3 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 3000);
   }
 });
-
