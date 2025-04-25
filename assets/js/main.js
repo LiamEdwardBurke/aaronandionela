@@ -171,26 +171,30 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Popup submit RSVP button
-  const scriptURL = "https://script.google.com/macros/s/AKfycbxYalcjtL5BraUZ7eAMYg5NTQS01NaXI0KGEkubguatPrlf1x5gV9KH_Yh91J2r07I0sg/exec";
-
+  // Popup RSVP submission handler
+  const scriptURL = "https://script.google.com/macros/s/AKfycbwH7keZ-QGJnjLNmLcRfMaDfDur3YjyvvOC72l6dmhKpMpbVadTsnDrxTHQmCILObQeaw/exec";
   const forms = document.querySelectorAll(".rsvp-form");
-
+  const loadingIndicator = document.getElementById("rsvp-loading");
+  
+  let submitting = false; // Prevents double submissions
+  
   forms.forEach((form) => {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-
-      if (!form.closest(".lang.active")) return;
-
+  
+      if (!form.closest(".lang.active") || submitting) return;
+  
       const formData = new FormData(form);
-
+      submitting = true;
+      loadingIndicator.style.display = "block"; // Show loading
+  
       fetch(scriptURL, {
         method: "POST",
         body: formData,
       })
         .then((response) => {
           if (response.ok) {
-            showConfirmationPopup();
+            showConfirmationPopup(form);
             form.reset();
           } else {
             alert("There was an issue with your RSVP. Please try again.");
@@ -198,17 +202,21 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch((error) => {
           alert("Error: " + error.message);
+        })
+        .finally(() => {
+          submitting = false;
+          loadingIndicator.style.display = "none"; // Hide loading
         });
     });
   });
-
-  function showConfirmationPopup() {
-    const isSpanish = document.querySelector('.lang-es.active');
+  
+  function showConfirmationPopup(form) {
+    const isSpanish = form.closest(".lang-es") !== null;
     const popup = document.createElement("div");
     popup.textContent = isSpanish
       ? "🎉 ¡RSVP enviado con éxito!"
       : "🎉 RSVP submitted successfully!";
-
+  
     popup.style.position = "fixed";
     popup.style.top = "50%";
     popup.style.left = "50%";
@@ -219,11 +227,10 @@ document.addEventListener("DOMContentLoaded", () => {
     popup.style.borderRadius = "10px";
     popup.style.boxShadow = "0 2px 10px rgba(0, 0, 0, 0.2)";
     popup.style.zIndex = "9999";
-
+  
     document.body.appendChild(popup);
-
-    setTimeout(() => {
-      popup.remove();
-    }, 3000);
+    setTimeout(() => popup.remove(), 3000);
   }
+  
+
 });

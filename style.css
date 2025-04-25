@@ -60,6 +60,10 @@ body {
   background-color: #F6F0F0;
   padding: 0;
   overflow-x: hidden;
+  padding-top: env(safe-area-inset-top);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 body, html {
@@ -67,6 +71,7 @@ body, html {
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
+    height: 100%;
 }
 
 h1 {
@@ -143,7 +148,7 @@ a {
     align-items: center;
     text-align: center;
     position: relative;
-    padding-top: 100px;
+    padding-top: calc(1rem + env(safe-area-inset-top));
 }
 
 /* Overlay using ::before */
@@ -164,7 +169,7 @@ a {
   z-index: 1;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 800px) {
     .header-image {
       background-image: url('assets/images/header.jpg');
 
@@ -335,7 +340,7 @@ body:not(.js-enabled) .lang-en {
   }
   
   /* Responsive - mobile */
-  @media (max-width: 1000px) {
+  @media (max-width: 800px) {
     .hamburger {
       display: block;
     }
@@ -511,7 +516,7 @@ section {
   order: 2;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 800px) {
   .head {
     flex-direction: column;
     text-align: center;
@@ -590,6 +595,21 @@ section {
     margin-bottom: 1rem;
   }
 
+  #rsvp-loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-family: "Cormorant SC", serif;
+    font-size: 1.2rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    z-index: 9999;
+    display: none;
+  }
+
 input {
     padding: 10px;
     border: 1px solid #ccc;
@@ -631,7 +651,7 @@ input {
     background-image: url('assets/images/header-travel-desktop.jpg');
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 800px) {
     .travel .header-image {
       background-image: url('assets/images/header-travel-mobile.jpg');
     }
@@ -640,6 +660,19 @@ input {
 /* TRAVEL CONTENT */
 .travel-info .head {
   flex-direction: column;
+}
+
+.accomodation .button {
+  margin-top: 20px;
+  color: #727D73;
+  border: 1px solid #727D73;
+}
+
+.accomodation .button:hover {
+  background-color: #727D73;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid #fff;
 }
 
 /* DUBLIN CONTENT */
