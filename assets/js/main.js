@@ -1,27 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Function to scroll to saved hash from sessionStorage
-  function scrollToSavedHash() {
-    const hash = sessionStorage.getItem('scrollToHash');
-    console.log("Hash stored in sessionStorage:", hash); // Debugging line
-    if (!hash) return;
-
-    let attempts = 0;
-    const maxAttempts = 10;
-
-    const tryScroll = () => {
-      const target = document.getElementById(hash);
-      if (target) {
-        console.log("Scrolling to target:", target); // Debugging line
-        target.scrollIntoView({ behavior: 'smooth' });
-        sessionStorage.removeItem('scrollToHash');
-      } else if (attempts < maxAttempts) {
-        attempts++;
-        setTimeout(tryScroll, 100);
-      }
-    };
-
-    tryScroll();
-  }
 
   // Fetch the navbar HTML and inject it
   fetch("navbar.html")
