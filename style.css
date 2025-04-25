@@ -451,6 +451,19 @@ body:not(.js-enabled) .lang-en {
   transition: all 0.3s ease-in-out;
 }
 
+.button.dark {
+  margin-top: 20px;
+  color: #727D73;
+  border: 1px solid #727D73;
+}
+
+.button.dark:hover {
+  background-color: #727D73;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid #fff;
+}
+
 section {
     width: 100%;
   }
@@ -662,19 +675,6 @@ input {
   flex-direction: column;
 }
 
-.accomodation .button {
-  margin-top: 20px;
-  color: #727D73;
-  border: 1px solid #727D73;
-}
-
-.accomodation .button:hover {
-  background-color: #727D73;
-  color: #fff;
-  transition: all 0.3s ease-in-out;
-  border: 1px solid #fff;
-}
-
 /* DUBLIN CONTENT */
 .dublin .head {
   background-color: #727D73;
@@ -688,4 +688,21 @@ input {
 /* WEST COAST CONTENT */
   .west .picture {
     background-image: url('assets/images/westcoast.jpg');
+  }
+
+/* GIFT REGISTRY */
+  .gifts .header-image {
+    background-image: url('assets/images/gifts-header.jpg');
+    height: 50vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .gifts p:last-of-type {
+    margin-bottom: 20px;
+  }
+
+  .gifts.content li {
+    margin-bottom: 20px;
   }
