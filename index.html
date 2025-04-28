@@ -25,8 +25,6 @@
 
 <body>
     <div id="navbar-container"></div>
-  
-      
 
     <!-- English Header -->  
     <header class="header-image lang lang-en active">
@@ -163,8 +161,8 @@
         <!-- English RSVP -->
         <div class="rsvp lang lang-en active">
             <section class="rsvp head" id="index.html#rsvp">
-                <h2>RSVP</h2>
                 <div class="rsvp content">
+                  <h2>RSVP</h2>
                     <h3>We would love to hear from you!</h3>
                     <p>Please let us know if you can make it to our wedding by filling out the form below.</p>
                     <p>We kindly ask that you RSVP by 1st July 2025 to help us with our planning.</p>
@@ -193,8 +191,8 @@
         <!-- Spanish RSVP -->
         <div class="rsvp lang lang-es">
             <section class="rsvp head" id="index.html#rsvp">
-                <h2>RSVP</h2>
                 <div class="rsvp content">
+                  <h2>RSVP</h2>
                     <h3>¡Nos encantaría saber de ti!</h3>
                     <p>Por favor, háznos saber si puedes asistir a nuestra boda llenando el formulario a continuación.</p>
                     <p>Te pedimos amablemente que confirmes tu asistencia antes del 1 de julio de 2025 para ayudarnos con nuestra planificación.</p>
@@ -221,39 +219,63 @@
         </div>
     </main>
 
-    <footer>
-        <p>&copy; 2023 Ionela & Aaron. All rights reserved.</p>
+    <footer class="lang lang-en active">
+        <p>Designed and developed by <a href="mailto:liamburkeblue@gmail.com">Liam Burke</a></p>
     </footer>
+
+    <footer class="lang lang-es">
+      <p>Diseñado y desarrollado por <a href="mailto:liamburkeblue@gmail.com">Liam Burke</a></p>
+  </footer>
     
     <script src="assets/js/main.js" defer></script>
 
 
     <script>
-        const guestList = document.getElementById('guest-list');
-        const addGuestBtn = document.getElementById('add-guest');
+      document.addEventListener('DOMContentLoaded', () => {
         let guestCount = 1;
       
-        addGuestBtn.addEventListener('click', () => {
-          guestCount++;
+        document.addEventListener('click', (e) => {
+          const addGuestBtn = document.querySelector('.lang.active #add-guest');
       
-          const guestDiv = document.createElement('div');
-          guestDiv.classList.add('rsvp-name');
+          if (e.target === addGuestBtn) {
+            guestCount++;
       
-          const label = document.createElement('label');
-          label.setAttribute('for', `guest-${guestCount}`);
-          label.textContent = `Name ${guestCount}:`;
+            // Find the guest list inside the active language
+            const guestList = document.querySelector('.lang.active #guest-list');
       
-          const input = document.createElement('input');
-          input.type = 'text';
-          input.id = `guest-${guestCount}`;
-          input.name = 'guest[]';
-          input.required = true;
+            const guestDiv = document.createElement('div');
+            guestDiv.classList.add('rsvp-name');
       
-          guestDiv.appendChild(label);
-          guestDiv.appendChild(input);
-          guestList.appendChild(guestDiv);
+            const label = document.createElement('label');
+            label.setAttribute('for', `guest-${guestCount}`);
+            
+            // Change label text depending on language
+            const isSpanish = document.querySelector('.lang-es.active');
+            label.textContent = isSpanish ? `Nombre ${guestCount}:` : `Name ${guestCount}:`;
+      
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.id = `guest-${guestCount}`;
+            input.name = 'guest[]';
+      
+            // Create remove button
+            const removeBtn = document.createElement('button');
+            removeBtn.type = 'button';
+            removeBtn.textContent = '❌';
+            removeBtn.classList.add('remove-guest-btn');
+            removeBtn.addEventListener('click', () => {
+              guestDiv.remove();
+            });
+      
+            guestDiv.appendChild(label);
+            guestDiv.appendChild(input);
+            guestDiv.appendChild(removeBtn);
+            guestList.appendChild(guestDiv);
+          }
         });
+      });
       </script>
+          
       
             
 </body>

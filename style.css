@@ -452,7 +452,7 @@ body:not(.js-enabled) .lang-en {
 }
 
 .button.dark {
-  margin-top: 20px;
+  margin-top: 30px;
   color: #727D73;
   border: 1px solid #727D73;
 }
@@ -504,7 +504,7 @@ section {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+  padding: 1rem 1.5rem 1rem 1.5rem;
   text-align: center;
 }
 
@@ -574,7 +574,7 @@ section {
   }
 
   .location .content p:last-of-type {
-    margin-bottom: 20px;
+    margin-bottom: 35px;
   } /* Added to select the last paragraph in the location content as the <p> tag above it has margin: 0 auto; in your CSS (style.css, line 104), which removes its bottom margin entirely. */
 
 
@@ -605,8 +605,13 @@ section {
   }
 
   .rsvp-name {
+    position: relative;
     margin-bottom: 1rem;
   }
+
+  .rsvp-name input {
+    padding-right: 2rem; /* Make space for the X */
+  }  
 
   #rsvp-loading {
     position: fixed;
@@ -636,7 +641,7 @@ input {
   }
 
   form > .button {
-    margin-top: 20px;
+    margin-top: 30px;
     color: #727D73;
     border: 1px solid #727D73;
   }
@@ -648,13 +653,22 @@ input {
     border: 1px solid #fff;
   }
 
-  footer {
-    background-color: #727D73;
-    color: white;
-    text-align: center;
-    padding: 2rem;
-    font-family: "Cormorant SC", serif;
+  .remove-guest-btn {
+    position: absolute;
+    top: 50%;
+    right: 0.5rem;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #727d73;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0;
   }
+  
+  .remove-guest-btn:hover {
+    color: #727D73;
+  }  
 
 
 
@@ -695,14 +709,36 @@ input {
     background-image: url('assets/images/gifts-header.jpg');
     height: 50vh;
     background-size: cover;
-    background-position: center;
+    background-position: 50% 25%;
     background-repeat: no-repeat;
   }
 
   .gifts p:last-of-type {
-    margin-bottom: 20px;
+    margin-bottom: 35px;
   }
 
   .gifts.content li {
     margin-bottom: 20px;
+  }
+
+
+/* FOOTER */
+
+  footer {
+    background-color: #727D73;
+    color: white;
+    text-align: right;
+    padding: 2rem;
+    font-family: "Cormorant SC", serif;
+  }
+
+  footer p {
+    margin-left: auto;
+    margin-right: 0;
+    width: fit-content;
+  }
+
+  footer p a {
+    color: #fff;
+    text-decoration: underline;
   }
