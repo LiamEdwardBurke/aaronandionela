@@ -32,58 +32,51 @@ document.addEventListener("DOMContentLoaded", () => {
     const navLinkElements = document.querySelectorAll('#nav-links a');
     const navbar = document.querySelector('.navbar');
 
-    document.addEventListener("DOMContentLoaded", () => {
+    // Language toggle functionality
+    if (toggleBtn && overlay) {
+      toggleBtn.addEventListener('click', () => {
+        overlay.classList.add('active');
 
-      // Language toggle functionality
-      const toggleBtn = document.getElementById('lang-toggle');
-      const overlay = document.getElementById('lang-transition-overlay');
-    
-      if (toggleBtn && overlay) {
-        toggleBtn.addEventListener('click', () => {
-          overlay.classList.add('active');
-    
+        setTimeout(() => {
+          const englishElements = document.querySelectorAll('.lang-en');
+          const spanishElements = document.querySelectorAll('.lang-es');
+          const isEnglishActive = Array.from(englishElements).some(el => el.classList.contains('active'));
+
+          englishElements.forEach(el => {
+            el.classList.toggle('active', !isEnglishActive);
+            el.style.display = !isEnglishActive ? 'flex' : 'none';
+          });
+
+          spanishElements.forEach(el => {
+            el.classList.toggle('active', isEnglishActive);
+            el.style.display = isEnglishActive ? 'flex' : 'none';
+          });
+
+          toggleBtn.textContent = isEnglishActive ? 'English' : 'Español';
+
           setTimeout(() => {
-            const englishElements = document.querySelectorAll('.lang-en');
-            const spanishElements = document.querySelectorAll('.lang-es');
-            const isEnglishActive = Array.from(englishElements).some(el => el.classList.contains('active'));
-    
-            englishElements.forEach(el => {
-              el.classList.toggle('active', !isEnglishActive);
-              el.style.display = !isEnglishActive ? 'flex' : 'none';
-            });
-    
-            spanishElements.forEach(el => {
-              el.classList.toggle('active', isEnglishActive);
-              el.style.display = isEnglishActive ? 'flex' : 'none';
-            });
-    
-            toggleBtn.textContent = isEnglishActive ? 'English' : 'Español';
-    
-            setTimeout(() => {
-              overlay.classList.remove('active');
-            }, 300);
+            overlay.classList.remove('active');
           }, 300);
-        });
-    
-        // Default to English on load
-        const englishElements = document.querySelectorAll('.lang-en');
-        const spanishElements = document.querySelectorAll('.lang-es');
-    
-        englishElements.forEach(el => {
-          el.classList.add('active');
-          el.style.display = 'flex';
-        });
-    
-        spanishElements.forEach(el => {
-          el.classList.remove('active');
-          el.style.display = 'none';
-        });
-    
-        toggleBtn.textContent = 'Español';
-        document.body.classList.add('js-enabled');
-      }
-    
-    });    
+        }, 300);
+      });
+
+      // Default to English on load
+      const englishElements = document.querySelectorAll('.lang-en');
+      const spanishElements = document.querySelectorAll('.lang-es');
+
+      englishElements.forEach(el => {
+        el.classList.add('active');
+        el.style.display = 'flex';
+      });
+
+      spanishElements.forEach(el => {
+        el.classList.remove('active');
+        el.style.display = 'none';
+      });
+
+      toggleBtn.textContent = 'Español';
+      document.body.classList.add('js-enabled');
+    }
 
     // Hamburger menu toggle
     if (hamburger && navLinks) {
@@ -121,7 +114,6 @@ document.addEventListener("DOMContentLoaded", () => {
         navLinks.classList.remove('active');
       });
     });
-
 
     // Sticky navbar on scroll
     if (navbar) {
@@ -239,5 +231,4 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => popup.remove(), 3000);
     }
   
-  });
-  
+});
