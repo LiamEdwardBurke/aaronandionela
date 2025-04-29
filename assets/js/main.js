@@ -169,75 +169,75 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Popup RSVP submission handler
   const scriptURL = "https://script.google.com/macros/s/AKfycbx4s9-zjX1ca02NSOV9VhNJAGIzSNDXY4BsIt3_REGIUWe7yGTYLqnYrZKdh49bePdN7Q/exec";
-  const forms = document.querySelectorAll(".rsvp-form");
-  const loadingIndicator = document.getElementById("rsvp-loading");
+    const forms = document.querySelectorAll(".rsvp-form");
+    const loadingIndicator = document.getElementById("rsvp-loading");
+    
+    let submitting = false; // Prevents double submissions
+    
+    forms.forEach((form) => {
+      form.addEventListener("submit", function (e) {
+        e.preventDefault(); // Prevent the form from submitting the usual way
+    
+        if (submitting) return; // Prevent double submission
   
-  let submitting = false; // Prevents double submissions
-  
-  forms.forEach((form) => {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-  
-      if (!form.closest(".lang.active") || submitting) return;
-  
-      // ✅ Check if reCAPTCHA has been completed
-      const recaptchaResponse = grecaptcha.getResponse();
-      if (recaptchaResponse.length === 0) {
-        alert("Please complete the reCAPTCHA.");
-        return;
-      }
-  
-      // ✅ Append reCAPTCHA response to form data
-      const formData = new FormData(form);
-      formData.append("g-recaptcha-response", recaptchaResponse);
-  
-      submitting = true;
-      loadingIndicator.style.display = "block"; // Show loading
-  
-      fetch(scriptURL, {
-        method: "POST",
-        body: formData,
-      })
-        .then((response) => {
-          if (response.ok) {
-            showConfirmationPopup(form);
-            form.reset();
-            grecaptcha.reset(); // ✅ Optional: reset captcha for future submissions
-          } else {
-            alert("There was an issue with your RSVP. Please try again.");
-          }
+        // ✅ Check if reCAPTCHA has been completed
+        const recaptchaResponse = grecaptcha.getResponse();
+        if (recaptchaResponse.length === 0) {
+          alert("Please complete the reCAPTCHA.");
+          return;
+        }
+    
+        // ✅ Append reCAPTCHA response to form data
+        const formData = new FormData(form);
+        formData.append("g-recaptcha-response", recaptchaResponse);
+    
+        submitting = true;
+        loadingIndicator.style.display = "block"; // Show loading
+    
+        fetch(scriptURL, {
+          method: "POST",
+          body: formData,
         })
-        .catch((error) => {
-          alert("Error: " + error.message);
-        })
-        .finally(() => {
-          submitting = false;
-          loadingIndicator.style.display = "none"; // Hide loading
-        });
+          .then((response) => {
+            if (response.ok) {
+              showConfirmationPopup(form);
+              form.reset();
+              grecaptcha.reset(); // ✅ Optional: reset captcha for future submissions
+            } else {
+              alert("There was an issue with your RSVP. Please try again.");
+            }
+          })
+          .catch((error) => {
+            alert("Error: " + error.message);
+          })
+          .finally(() => {
+            submitting = false;
+            loadingIndicator.style.display = "none"; // Hide loading
+          });
+      });
     });
-  });  
   
-  function showConfirmationPopup(form) {
-    const isSpanish = form.closest(".lang-es") !== null;
-    const popup = document.createElement("div");
-    popup.textContent = isSpanish
-      ? "🎉 ¡RSVP enviado con éxito!"
-      : "🎉 RSVP submitted successfully!";
+    function showConfirmationPopup(form) {
+      const isSpanish = form.closest(".lang-es") !== null;
+      const popup = document.createElement("div");
+      popup.textContent = isSpanish
+        ? "🎉 ¡RSVP enviado con éxito!"
+        : "🎉 RSVP submitted successfully!";
+    
+      popup.style.position = "fixed";
+      popup.style.top = "50%";
+      popup.style.left = "50%";
+      popup.style.transform = "translate(-50%, -50%)";
+      popup.style.padding = "1rem 2rem";
+      popup.style.backgroundColor = "#fff";
+      popup.style.border = "2px solid #AAB99A";
+      popup.style.borderRadius = "10px";
+      popup.style.boxShadow = "0 2px 10px rgba(0, 0, 0, 0.2)";
+      popup.style.zIndex = "9999";
+    
+      document.body.appendChild(popup);
+      setTimeout(() => popup.remove(), 3000);
+    }
   
-    popup.style.position = "fixed";
-    popup.style.top = "50%";
-    popup.style.left = "50%";
-    popup.style.transform = "translate(-50%, -50%)";
-    popup.style.padding = "1rem 2rem";
-    popup.style.backgroundColor = "#fff";
-    popup.style.border = "2px solid #AAB99A";
-    popup.style.borderRadius = "10px";
-    popup.style.boxShadow = "0 2px 10px rgba(0, 0, 0, 0.2)";
-    popup.style.zIndex = "9999";
+  });
   
-    document.body.appendChild(popup);
-    setTimeout(() => popup.remove(), 3000);
-  }
-  
-
-});
