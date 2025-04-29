@@ -170,6 +170,18 @@ document.addEventListener("DOMContentLoaded", () => {
   forms.forEach((form) => {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+    
+      if (!form.closest(".lang.active") || submitting) return;
+    
+      const recaptchaResponse = grecaptcha.getResponse();
+      if (recaptchaResponse.length === 0) {
+        alert("Please complete the reCAPTCHA.");
+        return;
+      }
+    
+      const formData = new FormData(form);
+      formData.append("g-recaptcha-response", recaptchaResponse);
+    
   
       if (!form.closest(".lang.active") || submitting) return;
   
