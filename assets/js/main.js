@@ -161,7 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Popup RSVP submission handler
-  const scriptURL = "https://script.google.com/macros/s/AKfycbwH7keZ-QGJnjLNmLcRfMaDfDur3YjyvvOC72l6dmhKpMpbVadTsnDrxTHQmCILObQeaw/exec";
+  const scriptURL = "https://script.google.com/macros/s/AKfycbx4s9-zjX1ca02NSOV9VhNJAGIzSNDXY4BsIt3_REGIUWe7yGTYLqnYrZKdh49bePdN7Q/exec";
   const forms = document.querySelectorAll(".rsvp-form");
   const loadingIndicator = document.getElementById("rsvp-loading");
   
