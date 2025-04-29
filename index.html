@@ -203,7 +203,8 @@
                 <button type="button" id="add-guest" class="button">+ Add Guest</button>
                 <input type="submit" value="Submit" class="button">
             </form>
-        </div>
+          </div>
+        </section>
     </main>
 
     <footer class="lang lang-en active">
@@ -220,32 +221,30 @@
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         let guestCount = 1;
-      
+    
         document.addEventListener('click', (e) => {
-          const addGuestBtn = document.querySelector('.lang.active #add-guest');
-      
-          if (e.target === addGuestBtn) {
+          const addGuestBtn = document.querySelector('#add-guest');
+    
+          if (addGuestBtn && addGuestBtn.contains(e.target)) {
             guestCount++;
-      
-            // Find the guest list inside the active language
-            const guestList = document.querySelector('.lang.active #guest-list');
-      
+    
+            const guestList = document.querySelector('#guest-list');
+            if (!guestList) return;
+    
             const guestDiv = document.createElement('div');
             guestDiv.classList.add('rsvp-name');
-      
+    
             const label = document.createElement('label');
             label.setAttribute('for', `guest-${guestCount}`);
-            
-            // Change label text depending on language
-            const isSpanish = document.querySelector('.lang-es.active');
-            label.textContent = isSpanish ? `Nombre ${guestCount}:` : `Name ${guestCount}:`;
-      
+            label.textContent = `Guest ${guestCount}:`; // Can customize bilingual if you want
+    
             const input = document.createElement('input');
             input.type = 'text';
             input.id = `guest-${guestCount}`;
             input.name = 'guest[]';
-      
-            // Create remove button
+            input.placeholder = '';
+            input.required = true;
+    
             const removeBtn = document.createElement('button');
             removeBtn.type = 'button';
             removeBtn.textContent = '❌';
@@ -253,7 +252,7 @@
             removeBtn.addEventListener('click', () => {
               guestDiv.remove();
             });
-      
+    
             guestDiv.appendChild(label);
             guestDiv.appendChild(input);
             guestDiv.appendChild(removeBtn);
@@ -261,7 +260,7 @@
           }
         });
       });
-      </script>
+    </script>    
       
       <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 

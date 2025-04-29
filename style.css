@@ -603,6 +603,8 @@ section {
   .rsvp-name {
     position: relative;
     margin-bottom: 1rem;
+    align-items: center;
+    justify-content: center;
   }
 
   .rsvp-name input {
