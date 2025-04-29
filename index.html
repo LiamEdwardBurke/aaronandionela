@@ -160,7 +160,7 @@
 
         <!-- English RSVP -->
         <div class="rsvp lang lang-en active">
-            <section class="rsvp head" id="index.html#rsvp">
+            <section class="rsvp head" id="rsvp">
                 <div class="rsvp content">
                   <h2>RSVP</h2>
                     <h3>We would love to hear from you!</h3>
@@ -180,7 +180,10 @@
                           <label for="email">Email:</label>
                           <input type="email" id="email" name="email" required>
                         </div>
-                      
+
+                        <div class="g-recaptcha" data-sitekey="6LewaigrAAAAACXrVnbTjTTsQIXcpDh46aGv2ocp
+                        "></div>
+
                         <button type="button" id="add-guest" class="button">+ Add Guest</button>
                         <input type="submit" value="Submit" class="button">
                     </form>
@@ -190,7 +193,7 @@
 
         <!-- Spanish RSVP -->
         <div class="rsvp lang lang-es">
-            <section class="rsvp head" id="index.html#rsvp">
+            <section class="rsvp head" id="rsvp">
                 <div class="rsvp content">
                   <h2>RSVP</h2>
                     <h3>¡Nos encantaría saber de ti!</h3>
@@ -210,6 +213,10 @@
                           <label for="email">Correo:</label>
                           <input type="email" id="email" name="email" required>
                         </div>
+
+                        <div class="g-recaptcha" data-sitekey="6LewaigrAAAAACXrVnbTjTTsQIXcpDh46aGv2ocp
+                        "></div>
+
                       
                         <button type="button" id="add-guest" class="button">+ Add Guest</button>
                         <input type="submit" value="Submit" class="button">
@@ -275,7 +282,9 @@
         });
       });
       </script>
-          
+      
+      <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
       
             
 </body>

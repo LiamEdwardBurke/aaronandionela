@@ -689,6 +689,10 @@ input {
   flex-direction: column;
 }
 
+.button-container {
+  margin: 30px 0;
+}
+
 /* DUBLIN CONTENT */
 .dublin .head {
   background-color: #727D73;
@@ -741,4 +745,13 @@ input {
   footer p a {
     color: #fff;
     text-decoration: underline;
+  }
+
+  
+  /* GOOGLE RECAPTCHA */
+  .g-recaptcha {
+    margin: 15px 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
