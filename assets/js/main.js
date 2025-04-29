@@ -170,22 +170,20 @@ document.addEventListener("DOMContentLoaded", () => {
   forms.forEach((form) => {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-    
+  
       if (!form.closest(".lang.active") || submitting) return;
-    
+  
+      // ✅ Check if reCAPTCHA has been completed
       const recaptchaResponse = grecaptcha.getResponse();
       if (recaptchaResponse.length === 0) {
         alert("Please complete the reCAPTCHA.");
         return;
       }
-    
+  
+      // ✅ Append reCAPTCHA response to form data
       const formData = new FormData(form);
       formData.append("g-recaptcha-response", recaptchaResponse);
-    
   
-      if (!form.closest(".lang.active") || submitting) return;
-  
-      const formData = new FormData(form);
       submitting = true;
       loadingIndicator.style.display = "block"; // Show loading
   
@@ -197,6 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
           if (response.ok) {
             showConfirmationPopup(form);
             form.reset();
+            grecaptcha.reset(); // ✅ Optional: reset captcha for future submissions
           } else {
             alert("There was an issue with your RSVP. Please try again.");
           }
@@ -209,7 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
           loadingIndicator.style.display = "none"; // Hide loading
         });
     });
-  });
+  });  
   
   function showConfirmationPopup(form) {
     const isSpanish = form.closest(".lang-es") !== null;
