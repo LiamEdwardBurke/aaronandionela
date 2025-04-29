@@ -95,14 +95,26 @@ document.addEventListener("DOMContentLoaded", () => {
     // Close menu when clicking a nav link
     navLinkElements.forEach(link => {
       link.addEventListener('click', (e) => {
-        // Ensure hash is saved when navigating to a section within the same page
         const href = link.getAttribute('href');
-        if (href.startsWith("#")) {
-          sessionStorage.setItem('scrollToHash', href.substring(1)); // Save the hash without '#'
+
+        if (href === '#rsvp') {
+          const isIndexPage = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname === '/wedding-site/';
+
+          if (!isIndexPage) {
+            e.preventDefault();
+            window.location.href = 'index.html#rsvp';
+            return;
+          }
+
+          sessionStorage.setItem('scrollToHash', 'rsvp');
+        } else if (href.startsWith('#')) {
+          sessionStorage.setItem('scrollToHash', href.substring(1));
         }
+
         navLinks.classList.remove('active');
       });
     });
+
 
     // Sticky navbar on scroll
     if (navbar) {
