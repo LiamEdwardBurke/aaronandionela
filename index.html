@@ -198,6 +198,11 @@
                   <input type="email" id="email" name="email" required>
                 </div>
 
+                <div class="rsvp-dietary">
+                  <label for="dietary">Dietary Requirements (optional):</label>
+                  <input type="text" id="dietary" name="dietary" placeholder="E.g., vegetarian, gluten-free">
+                </div>                
+
                 <div class="g-recaptcha" data-sitekey="6LdYdigrAAAAACkW0QQFAc2nGSX4J2Cbm-my6MmV"></div>
 
                 <button type="button" id="add-guest" class="button">+ Add Guest</button>
@@ -236,7 +241,7 @@
     
             const label = document.createElement('label');
             label.setAttribute('for', `guest-${guestCount}`);
-            label.textContent = `Guest ${guestCount}:`; // Can customize bilingual if you want
+            label.textContent = `Guest ${guestCount}: `; // Can customize bilingual if you want
     
             const input = document.createElement('input');
             input.type = 'text';
