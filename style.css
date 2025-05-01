@@ -588,8 +588,9 @@ section {
 
 
 /* RSVP CONTENT */
-.rsvp .form {
+div.rsvp.form {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 1.5rem;
@@ -598,6 +599,16 @@ section {
   .rsvp-form {
     align-items:center;
     justify-content: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   }
 
   .rsvp-name {
@@ -639,7 +650,6 @@ input {
   }
 
   form > .button {
-    margin-top: 30px;
     color: #727D73;
     border: 1px solid #727D73;
   }
@@ -649,6 +659,11 @@ input {
     color: #fff;
     transition: all 0.3s ease-in-out;
     border: 1px solid #fff;
+  }
+
+  .rsvp-dietary {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
   }
 
   .remove-guest-btn {
